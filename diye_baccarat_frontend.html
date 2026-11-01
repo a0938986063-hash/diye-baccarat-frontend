@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090909">
+<title>帝爺賜財百家樂</title>
+<style>
+:root{--gold:#d9b45e;--gold2:#f3dfaa;--bg:#090909;--panel:#17140e;--line:#594725;--muted:#b9ad91}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#443219 0,#17130d 38%,#080808 78%);color:#f7f0df;font-family:-apple-system,BlinkMacSystemFont,"PingFang TC",sans-serif}
+.app{max-width:560px;margin:auto;min-height:100vh;padding-bottom:86px}
+header{padding:19px 17px 14px;border-bottom:1px solid #584522;display:flex;align-items:center;gap:12px;background:#090909a8}
+.logo{width:48px;height:48px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold2);font-size:22px;box-shadow:0 0 18px #c99d3c30}
+.brand{flex:1}.brand h1{font-size:17px;letter-spacing:2px;color:var(--gold2);margin:0 0 4px}.brand small{color:var(--muted);font-size:10px;letter-spacing:1.5px}
+.status{font-size:10px;color:#d6c18e;border:1px solid #65512b;border-radius:30px;padding:6px 9px}
+main{padding:15px}
+.view{display:none}.view.active{display:block}
+.hero{border:1px solid #70572b;border-radius:19px;padding:23px 18px;background:linear-gradient(135deg,#282012,#100e0a 65%,#241b0d);text-align:center;position:relative;overflow:hidden}
+.hero:after{content:"帝";position:absolute;right:-5px;bottom:-43px;font-size:145px;color:#d8b45e0b;font-weight:900}
+.hero .seal{width:66px;height:66px;margin:0 auto 12px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold2);font-size:31px}
+.hero h2{margin:0;color:var(--gold2);font-size:23px;letter-spacing:3px}.hero p{font-size:12px;color:#c8b990;line-height:1.7;margin:9px 0 17px}
+.btn{border:0;border-radius:12px;padding:13px 16px;background:linear-gradient(100deg,#9b7228,#f1d98d,#a77c2d);color:#171108;font-weight:800;font-size:14px;letter-spacing:1px;width:100%;cursor:pointer}
+.btn.secondary{background:#211c12;color:#ead7a4;border:1px solid #6b552b}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:14px}
+.tile,.panel{border:1px solid var(--line);border-radius:15px;background:linear-gradient(145deg,#1c1912,#100f0c);padding:15px}
+.tile .ico{font-size:23px;color:var(--gold2)}.tile b{display:block;color:var(--gold2);font-size:14px;margin:8px 0 4px}.tile small{color:var(--muted);font-size:11px;line-height:1.5}
+.panel{margin-top:14px}.panel h3{margin:0 0 12px;color:var(--gold2);font-size:14px;letter-spacing:1px}
+.note{border:1px solid #6b552b;background:#211b10;color:#e7d6a6;padding:11px 12px;border-radius:12px;font-size:11px;line-height:1.65;margin:13px 0}
+.field{width:100%;background:#090909;border:1px solid #5d4b2b;border-radius:10px;padding:13px;color:#fff;font-size:14px;margin:5px 0 12px}
+label{font-size:12px;color:#d7c69b}
+.topline{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.topline h2{font-size:18px;color:var(--gold2);margin:0}.muted{color:var(--muted);font-size:11px}
+.tablefelt{background:radial-gradient(ellipse,#17432d,#092719 72%);border:4px solid #80612d;border-radius:24px;padding:17px 12px;box-shadow:inset 0 0 25px #0008}
+.sides{display:grid;grid-template-columns:1fr 1fr;gap:10px}.side{background:#071b12a8;border:1px solid #b99a55;border-radius:12px;padding:11px 7px;text-align:center}.side b{color:#f0d58b;font-size:13px}
+.cards{display:flex;justify-content:center;gap:6px;min-height:70px;align-items:center;margin:8px 0}.card{width:39px;height:57px;background:#f8f3e8;color:#171717;border-radius:6px;padding:5px;display:flex;flex-direction:column;justify-content:space-between;font-weight:800;box-shadow:0 2px 7px #0008}.card.red{color:#bf2632}.card span:last-child{text-align:right}.total{font-size:12px;color:#e6d7b1}
+.outcome{text-align:center;font-size:18px;font-weight:800;color:#f4d98f;padding:13px 5px;min-height:48px}
+.history{display:flex;gap:7px;flex-wrap:wrap}.dot{width:31px;height:31px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:800;background:#171717;border:1px solid #888}.dot.p{color:#80b5ff;border-color:#477fc2}.dot.b{color:#ff8b8b;border-color:#b34c4c}.dot.t{color:#8de0aa;border-color:#4d9d68}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(560px,100%);display:grid;grid-template-columns:repeat(4,1fr);background:#090909f2;border-top:1px solid #5c4824;padding:8px 7px calc(8px + env(safe-area-inset-bottom));z-index:5}
+.nav button{background:none;border:0;color:#a99b7d;font-size:10px;padding:6px 2px}.nav button span{display:block;font-size:19px;margin-bottom:3px}.nav button.active{color:var(--gold2)}
+.listrow{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid #3c321e;font-size:12px}.listrow:last-child{border:0}
+footer{text-align:center;color:#82765f;font-size:10px;padding:20px}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="logo">帝</div><div class="brand"><h1>帝爺賜財百家樂</h1><small>BLACK · GOLD · CARD TABLE</small></div><div class="status">虛擬展示版</div></header>
+<main>
+<section id="home" class="view active">
+ <div class="hero"><div class="seal">帝</div><h2>帝爺賜財百家樂</h2><p>沉穩黑金視覺・紙牌規則展示<br>專為手機直式瀏覽設計</p><button class="btn" onclick="show('game')">進入紙牌展示</button></div>
+ <div class="grid">
+  <div class="tile"><div class="ico">♠</div><b>百家樂牌桌</b><small>隨機發牌與點數計算</small></div>
+  <div class="tile"><div class="ico">◎</div><b>牌局紀錄</b><small>查看本次瀏覽的結果</small></div>
+  <div class="tile"><div class="ico">♛</div><b>會員專區</b><small>前台帳號介面規劃</small></div>
+  <div class="tile"><div class="ico">⚙</div><b>系統資訊</b><small>目前為本機展示原型</small></div>
+ </div>
+ <div class="note">本網站目前是非金錢紙牌學習展示，不提供下注、儲值、兌現或賭博服務。會員與雲端資料功能尚未連接。</div>
+</section>
+<section id="game" class="view">
+ <div class="topline"><h2>百家樂紙牌展示</h2><span class="muted">隨機牌面</span></div>
+ <div class="tablefelt">
+  <div class="sides">
+   <div class="side"><b>閒家 PLAYER</b><div class="cards" id="pc"><span class="muted">等待發牌</span></div><div class="total" id="pt">點數 —</div></div>
+   <div class="side"><b>莊家 BANKER</b><div class="cards" id="bc"><span class="muted">等待發牌</span></div><div class="total" id="bt">點數 —</div></div>
+  </div>
+  <div class="outcome" id="outcome">準備開始</div>
+  <button class="btn" onclick="deal()">隨機發牌</button>
+ </div>
+ <div class="panel"><h3>本次牌局紀錄</h3><div id="history" class="history"><span class="muted">尚無紀錄</span></div></div>
+ <div class="note">此處僅展示紙牌、點數與勝負判定，不含下注按鈕或點數輸贏機制。</div>
+</section>
+<section id="records" class="view">
+ <div class="topline"><h2>牌局紀錄</h2><span class="muted">本機暫存</span></div>
+ <div class="panel"><h3>最近結果</h3><div id="recordlist" class="muted">尚無牌局紀錄</div></div>
+ <button class="btn secondary" style="margin-top:12px" onclick="clearRecords()">清除本機紀錄</button>
+</section>
+<section id="member" class="view">
+ <div class="topline"><h2>會員專區</h2><span class="muted">介面預覽</span></div>
+ <div class="panel">
+  <h3>會員登入介面</h3>
+  <label>帳號</label><input class="field" id="username" placeholder="輸入會員帳號" autocomplete="username">
+  <label>密碼</label><input class="field" id="password" type="password" placeholder="輸入密碼" autocomplete="current-password">
+  <button class="btn secondary" onclick="alert('這是前台介面預覽，尚未連接既有 Supabase Auth。請勿輸入真實密碼。')">登入介面預覽</button>
+  <div class="note">登入功能尚未連接既有 Supabase。此版本不會收集或儲存你輸入的帳密，請勿填入真實密碼。</div>
+ </div>
+ <div class="panel"><h3>系統狀態</h3><div class="listrow"><span>前台畫面</span><b style="color:#e5cb82">已建立</b></div><div class="listrow"><span>雲端會員驗證</span><span class="muted">待接線</span></div><div class="listrow"><span>雲端資料庫</span><span class="muted">沿用既有專案，待連接</span></div></div>
+</section>
+</main>
+<footer>帝爺賜財百家樂 · 非金錢紙牌展示原型</footer>
+<nav class="nav">
+ <button class="active" data-view="home" onclick="show('home')"><span>⌂</span>首頁</button>
+ <button data-view="game" onclick="show('game')"><span>♧</span>牌桌</button>
+ <button data-view="records" onclick="show('records')"><span>▤</span>紀錄</button>
+ <button data-view="member" onclick="show('member')"><span>♙</span>會員</button>
+</nav>
+</div>
+<script>
+const suits=[["♠",false],["♥",true],["♦",true],["♣",false]],ranks=["A","2","3","4","5","6","7","8","9","10","J","Q","K"];
+const val=r=>r==="A"?1:["10","J","Q","K"].includes(r)?0:Number(r);
+let records=[];
+function show(id){document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.id===id));document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.view===id));window.scrollTo(0,0)}
+function draw(){let [s,red]=suits[Math.floor(Math.random()*4)],r=ranks[Math.floor(Math.random()*13)];return{s,red,r,v:val(r)}}
+function total(a){return a.reduce((n,c)=>n+c.v,0)%10}
+function render(id,a){document.getElementById(id).innerHTML=a.map(c=>`<div class="card ${c.red?'red':''}"><span>${c.r}</span><span>${c.s}</span></div>`).join("")}
+function deal(){
+ let p=[draw(),draw()],b=[draw(),draw()],pt=total(p),bt=total(b);
+ if(pt<6)p.push(draw());
+ if(p.length===3){let x=p[2].v;if(bt<=2)b.push(draw());else if(bt===3&&x!==8)b.push(draw());else if(bt===4&&x>=2&&x<=7)b.push(draw());else if(bt===5&&x>=4&&x<=7)b.push(draw());else if(bt===6&&(x===6||x===7))b.push(draw())}
+ else if(bt<6)b.push(draw());
+ pt=total(p);bt=total(b);render("pc",p);render("bc",b);
+ document.getElementById("pt").textContent="點數 "+pt;document.getElementById("bt").textContent="點數 "+bt;
+ let result=pt>bt?"閒":bt>pt?"莊":"和";document.getElementById("outcome").textContent=result+" · 本局展示結果";
+ records.unshift({result,pt,bt});records=records.slice(0,20);renderRecords();
+}
+function renderRecords(){let h=document.getElementById("history"),r=document.getElementById("recordlist");h.innerHTML=records.length?records.slice(0,12).map(x=>`<span class="dot ${x.result==='閒'?'p':x.result==='莊'?'b':'t'}">${x.result}</span>`).join(""):'<span class="muted">尚無紀錄</span>';r.innerHTML=records.length?records.map((x,i)=>`<div class="listrow"><span>第 ${records.length-i} 局 · ${x.result}家結果</span><span class="muted">閒 ${x.pt}：莊 ${x.bt}</span></div>`).join(""):'尚無牌局紀錄'}
+function clearRecords(){records=[];renderRecords()}
+</script>
+</body></html>
